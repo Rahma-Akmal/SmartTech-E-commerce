@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.PageTitle = "Product Managment";
+    ViewData["CardTitle"] = "View Products";
+
+}
+
+
+<a asp-action="Create" class="btn btn-primary" style="background-color:gainsboro;color:black;margin-left:0px">Create</a>
+
+
+
+<table id="mytable" width="100%">
+    <thead class="text-bold">
+    <tr>
+        <td >Name</td>
+        <td >Description</td>
+        <td >Price</td>
+        <td >Category</td>
+        <td >Actions</td>
+        
+
+    </tr>
+    </thead>
+
+</table>
+@section Scripts{
+    <script src="~/js/Product.js"></script> }

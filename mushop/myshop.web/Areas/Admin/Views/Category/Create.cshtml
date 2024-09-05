@@ -1,0 +1,47 @@
+﻿@model Category
+
+@{
+    ViewBag.PageTitle = "Catgory Managment";
+    ViewData["CardTitle"] = "Create Categories";
+    
+}
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" style="background-color:gainsboro" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" id="myTextarea" class="form-control" style="background-color:gainsboro"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" style="background-color:gainsboro;color:black" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div>
+    <a asp-action="Index" style="color:gray">Back to List</a>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        tinymce.init({
+            selector: '#myTextarea',
+            width: 550,  // Set the desired width in pixels
+            height: 200
+        });
+    </script>
+}
+
+

@@ -1,0 +1,119 @@
+﻿@using Microsoft.AspNetCore.Http
+@using myshop.Utilities
+@inject IHttpContextAccessor httpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>My Shop</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/Customer/css/styles.css" rel="stylesheet" />
+    <style>
+        .full-background {
+            background: url('/img/6cc97590bc8d49e29a7e20c40cec2b75.jpg') no-repeat center center;
+            /* background-size: cover; */
+            overflow: hidden;
+            height:20%;
+            width:100%;
+            background-size:cover;
+        }
+
+            .full-background .container {
+                padding-top: 50px; /* Adjust as needed to add space from the top */
+                padding-bottom: 50px; /* Adjust as needed to add space from the bottom */
+                width:100%;
+            }
+           }
+
+            /* Change text color on hover */
+            .navbar-light .navbar-nav ,
+            .navbar-light ,
+            .navbar-light .dropdown-menu .dropdown-item:hover {
+                color: black; /* Optional: lighter color on hover */
+            }
+
+       
+        /* Style the button */
+       
+
+            
+
+       
+    </style>
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">Smart Tech</a>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" href="/Customer/Home/Index">Home</a></li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole(SD.AdminRole))
+                        {
+                            <li class="nav-item"><a class="nav-link active" href="/Admin/Dashboard/Index">Dashboard</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Setting</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/Admin/Order/Index">my Orders</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="/Identity/Account/Manage">Edit Profile</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                    }
+                </ul>
+                <partial name="_LoginPartial" />
+                    @if (User.Identity.IsAuthenticated)
+                {
+                    <form class="d-flex">
+                        <a href="/Customer/Cart/Index" class="btn btn-outline-dark">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            @await Component.InvokeAsync("ShoppingCart")
+                     
+                        </a>
+                    </form>
+                }
+                
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <section class="full-background" style="height: 50vh; position: relative;">
+        <div class="container px-4 px-lg-5 my-5" style="position: relative; z-index: 1;">
+            <div class="text-center text-white">
+                
+            </div>
+        </div>
+    </section>
+
+    @RenderBody()
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Smart Tech 2024</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/Customer/js/scripts.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

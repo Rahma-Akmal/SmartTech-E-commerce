@@ -1,0 +1,48 @@
+﻿@model Category
+
+@{
+    ViewBag.PageTitle = "Catgory Managment";
+    ViewData["CardTitle"] = "Edit Categories";
+}
+
+
+
+
+
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" style="background-color:gainsboro" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" id="myTextarea" class="form-control" style="background-color:gainsboro"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" value="SAVE" class="btn btn-primary" style="background-color:gainsboro;color:black" />
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="Index" style="color:gray">Back to List</a>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        tinymce.init({
+            selector: '#myTextarea',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+            width: 550,  // Set the desired width in pixels
+            height: 200
+        });
+    </script>
+}
+
+

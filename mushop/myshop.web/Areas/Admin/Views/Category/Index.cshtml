@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewBag.PageTitle = "Catgory Managment";
+    ViewData["CardTitle"] = "View Categories";
+}
+
+
+<a asp-action="Create" class="btn btn-primary" style="background-color:gainsboro;color:black;margin-left:0px">Create</a>
+
+
+
+<table class="table" width="100%" >
+    <thead class="text-bold">
+    <tr>
+        <td width="20%">Name</td>
+        <td width="35%">Description</td>
+        <td width="20%">CreatedTime</td>
+        <td width="20%">Edit Item</td>
+        <td width="20%">Remove</td>
+
+    </tr>
+    </thead>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@Html.Raw(item.Description)</td>
+            <td>@item.CreatedDate</td>
+            <td>
+                <a class="btn btn-dark" href="/Admin/Category/Edit/@item.Id">Edit</a>
+            </td>
+            <td>
+                <a class="btn btn-dark" href="/Admin/Category/Delete/@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
